@@ -5,11 +5,27 @@ import { Input } from '@/components/ui/input'
 import { Send } from 'lucide-react'
 import React, { useState } from 'react'
 import EmptyState from './_components/EmptyState'
+import axios from 'axios'
 
 function AiChat() {
   const [userInput, setUserInput] = useState<string>('')
+  const [loading,setLoading]=useState(false);
+const onSend = async () => {
+  setLoading(true);
+  try {
+    const result = await axios.post('/api/ai-career-chat-agent', {
+      userInput: userInput
+    });
+    console.log(result.data);
+  } catch (error) {
+    console.error('Client-side error:', error);
+    alert("Something went wrong. Please try again later.");
+  } finally {
+    setLoading(false);
+  }
+};
 
-  return (
+return (
     <div className='px-10 md:px-24 lg:px-34 xl:px-48'>
       {/* Header */}
       <div className='flex items-center justify-between gap-8'>
@@ -39,7 +55,7 @@ function AiChat() {
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
           />
-          <Button><Send /></Button>
+          <Button onClick={onSend} disabled={loading}><Send /></Button>
         </div>
       </div>
     </div>
