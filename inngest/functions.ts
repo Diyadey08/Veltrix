@@ -43,7 +43,7 @@ Recommend tools, websites, or platforms only if relevant.
 Never give legal, medical, or financial advice unless it's about job-related contexts (e.g., salary negotiation).
 
 Stay updated with trends (e.g., remote jobs, AI in the workplace, green careers)`,
-model:openai({
+model:gemini({
   model:"gemini-2.0-flash",
   apiKey:process.env.GEMINI_API_KEY
 })
