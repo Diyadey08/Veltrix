@@ -3,6 +3,8 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { Link } from 'lucide-react'
+import { v4 as uuidv4 } from 'uuid';
 interface TOOL{
   name: string,
   image:string,
@@ -15,9 +17,12 @@ type AIToolProps={
 }
 function AiToolCard({tool}:AIToolProps) {
    const router = useRouter()
-
+const id=uuidv4()
   const handleClick = () => {
     router.push(tool.path)
+  }
+  const onClickButton=()=>{
+
   }
   return (
     <div className='p-4 border rounded-md shadow-sm'>
@@ -26,9 +31,12 @@ function AiToolCard({tool}:AIToolProps) {
       )} */}
       <h2 className='text-lg font-semibold'>{tool.name}</h2>
       <p className='text-sm text-gray-600'>{tool.desc}</p>
-      <Button onClick={handleClick} className='mt-3'>
+      <Link href={tool.path+"/"+id}>
+      <Button onClick={onClickButton} className='mt-3'>
         {tool.button}
       </Button>
+      </Link>
+      
     </div>
   )
 }

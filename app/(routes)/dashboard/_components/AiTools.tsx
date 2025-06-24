@@ -1,6 +1,6 @@
 import { desc } from 'drizzle-orm'
 import React from 'react'
-import AiToolCard from '@/app/_components/AiToolCard'
+import AiToolCard from '@/app/(routes)/dashboard/_components/AiToolCard'
 const aiToolsList=[
     {
        
